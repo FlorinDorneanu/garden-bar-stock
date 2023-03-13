@@ -23,6 +23,4 @@ def get_initial_stock_data():
     initial_stock = SHEET.worksheet("initial stock").get_all_values()
     print(initial_stock)
 
-
-print(get_initial_stock_data())
-
+get_initial_stock_data()
