@@ -21,6 +21,24 @@ def get_initial_stock_data():
     Import initial stock data from worksheet
     """
     initial_stock = SHEET.worksheet("initial stock").get_all_values()
-    print(initial_stock)
+    
 
 get_initial_stock_data()
+
+
+def get_entries_data():
+    """
+    Get the number of bottles for each drink
+    introduced in the bar from the user
+    """
+    print("Please enter the number of bottles "
+          "for each drink introduced in the bar.")
+    print("Data should be 5 numbers divisible by 6, "
+          "separated by commas.")
+    print("Example: 12,24,36,48,60\n")
+
+    entries_str = input("Enter the number of bottles here: ")
+    print(f"The data provided is {entries_str}")
+    
+
+get_entries_data()
