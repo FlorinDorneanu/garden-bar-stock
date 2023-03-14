@@ -21,7 +21,7 @@ def get_initial_stock_data():
     Import initial stock data from worksheet
     """
     initial_stock = SHEET.worksheet("initial stock").get_all_values()
-    
+
 
 get_initial_stock_data()
 
@@ -38,7 +38,28 @@ def get_entries_data():
     print("Example: 12,24,36,48,60\n")
 
     entries_str = input("Enter the number of bottles here: ")
-    print(f"The data provided is {entries_str}")
-    
+    entries_data = entries_str.split(",")
+    validate_entries(entries_data)
+
+
+def validate_entries(bottles):
+    """
+    Convert all string values into integers,
+    Raises ValueError if strings cannot be
+    converted into integers, if there aren't
+    exactly 5 vaues, or if the values entered
+    cannot be divided by 6.
+    """
+    try:
+        [int(bottle) for bottle in bottles]
+        if len(bottles) != 5:
+            raise ValueError(
+                f"The user must enter exactly 5 values,"
+                f" you provided {len(bottles)}"
+            )
+    except ValueError as e:
+        print(f"Invalid entries: {e}, please try again.\n")
+
+
 
 get_entries_data()
