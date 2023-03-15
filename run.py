@@ -47,7 +47,7 @@ def validate_entries(bottles):
     Convert all string values into integers,
     Raises ValueError if strings cannot be
     converted into integers, if there aren't
-    exactly 5 vaues, or if the values entered
+    exactly 5 values, or if the values entered
     cannot be divided by 6.
     """
     try:
@@ -59,7 +59,9 @@ def validate_entries(bottles):
             )
     except ValueError as e:
         print(f"Invalid entries: {e}, please try again.\n")
-
+    for bottle in bottles:
+        if int(bottle) % 6 != 0:
+            print(f"{int(bottle)} is not divisible by.".format(bottle))
 
 
 get_entries_data()
