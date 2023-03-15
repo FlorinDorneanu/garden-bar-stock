@@ -28,8 +28,13 @@ get_initial_stock_data()
 
 def get_entries_data():
     """
-    Get the number of bottles for each drink
-    introduced in the bar from the user
+    Get entries input from the user.
+    Running a while loop that should recive 
+    valide input from the user, the loop 
+    should be repeted until the input is valid.
+    The input should contain a string
+    of 5 numbers separated by a comma 
+    that can be divisible by 6
     """
     while True:
         print("Please enter the number of bottles "
