@@ -29,11 +29,11 @@ get_initial_stock_data()
 def get_entries_data():
     """
     Get entries input from the user.
-    Running a while loop that should recive 
-    valide input from the user, the loop 
+    Running a while loop that should recive
+    valide input from the user, the loop
     should be repeted until the input is valid.
     The input should contain a string
-    of 5 numbers separated by a comma 
+    of 5 numbers separated by a comma
     that can be divisible by 6
     """
     while True:
@@ -48,7 +48,7 @@ def get_entries_data():
         entries_data = entries_str.split(",")
 
         if validate_entries(entries_data):
-            print("Data is vaid")
+            print("Entries are vaid")
             break
 
     return entries_data
@@ -83,4 +83,18 @@ def validate_entries(bottles):
     return True
 
 
+def update_entries_data(entries):
+    """
+    Update the entries worksheet with data
+    prided from the user.
+    """
+    print("Entries worksheet updating...\n")
+    entries_worksheet = SHEET.worksheet("entries")
+    entries_worksheet.append_row(entries)
+    print("Entries worksheet updated successfully.\n")
+
+
+
 entries = get_entries_data()
+entries_data = [int(entry) for entry in entries]
+update_entries_data(entries_data)
