@@ -31,15 +31,22 @@ def get_entries_data():
     Get the number of bottles for each drink
     introduced in the bar from the user
     """
-    print("Please enter the number of bottles "
-          "for each drink introduced in the bar.")
-    print("Data should be 5 numbers divisible by 6, "
-          "separated by commas.")
-    print("Example: 12,24,36,48,60\n")
+    while True:
+        print("Please enter the number of bottles "
+              "for each drink introduced in the bar.")
+        print("Data should be 5 numbers divisible by 6, "
+              "separated by commas.")
+        print("Example: 12,24,36,48,60\n")
 
-    entries_str = input("Enter the number of bottles here: ")
-    entries_data = entries_str.split(",")
-    validate_entries(entries_data)
+        entries_str = input("Enter the number of bottles here: ")
+
+        entries_data = entries_str.split(",")
+
+        if validate_entries(entries_data):
+            print("Data is vaid")
+            break
+
+    return entries_data
 
 
 def validate_entries(bottles):
@@ -59,13 +66,16 @@ def validate_entries(bottles):
             )
     except ValueError as e:
         print(f"Invalid entries: {e}, please try again.\n")
-
+        return False
+    # - Checking if a string can be converted into an integer
+    # - and use modulo operator to check if the integers can
+    # - be devided by 6.
     for bottle in bottles:
         if bottle.isdigit():
             if int(bottle) % 6 != 0:
                 print(f"{int(bottle)} is not divisible by 6.")
-
+                return False
     return True
 
 
-get_entries_data()
+entries = get_entries_data()
