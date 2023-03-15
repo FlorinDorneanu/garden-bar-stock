@@ -59,9 +59,13 @@ def validate_entries(bottles):
             )
     except ValueError as e:
         print(f"Invalid entries: {e}, please try again.\n")
+
     for bottle in bottles:
-        if int(bottle) % 6 != 0:
-            print(f"{int(bottle)} is not divisible by.".format(bottle))
+        if bottle.isdigit():
+            if int(bottle) % 6 != 0:
+                print(f"{int(bottle)} is not divisible by 6.")
+
+    return True
 
 
 get_entries_data()
