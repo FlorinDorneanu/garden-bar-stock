@@ -77,7 +77,7 @@ def validate_entries(bottles):
 def update_entries_data(entries):
     """
     Update the entries worksheet with data
-    prided from the user.
+    prited from the user.
     """
     print("Entries worksheet updating...\n")
     # Assign the user input to the specific columns
@@ -85,6 +85,21 @@ def update_entries_data(entries):
     entries_worksheet = SHEET.worksheet("entries")
     entries_worksheet.append_row(entries)
     print("Entries worksheet updated successfully.\n")
+
+
+def update_total_stock_data(total_stock):
+    """
+    Update the total_stock worksheet with the result
+    obtained from adding the initial stock with the
+    entries added by the user.
+    """
+    print("Total stock worksheet updating...\n")
+    # Pass the values obtained after the addition
+    # of intial_stock with entries to total_stock
+    # worksheet rows
+    total_stock_worksheet = SHEET.worksheet("total_stock")
+    total_stock_worksheet.append_row(total_stock)
+    print("Total stock worksheet updated successfully.\n")
 
 
 def calculate_total_stock(entries_row):
@@ -119,7 +134,7 @@ def main():
     entries_data = [int(entry) for entry in entries]
     update_entries_data(entries_data)
     final_total_stock = calculate_total_stock(entries_data)
-    print(final_total_stock)
+    update_total_stock_data(final_total_stock)
 
 
 print("Welcome to Garden Bar stock calculation!\n")
