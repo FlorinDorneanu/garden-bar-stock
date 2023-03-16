@@ -94,7 +94,14 @@ def update_entries_data(entries):
     print("Entries worksheet updated successfully.\n")
 
 
+def main():
+    """
+    Function create to hold 
+    and run all program funtions
+    """
+    entries = get_entries_data()
+    entries_data = [int(entry) for entry in entries]
+    update_entries_data(entries_data)
 
-entries = get_entries_data()
-entries_data = [int(entry) for entry in entries]
-update_entries_data(entries_data)
+
+main()
