@@ -3,6 +3,7 @@ Import libraries
 """
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -79,7 +80,7 @@ def update_entries_data(entries):
     prided from the user.
     """
     print("Entries worksheet updating...\n")
-    # Assign the user input to the specific columns 
+    # Assign the user input to the specific columns
     # of entries worksheet
     entries_worksheet = SHEET.worksheet("entries")
     entries_worksheet.append_row(entries)
@@ -88,28 +89,31 @@ def update_entries_data(entries):
 
 def calculate_total_stock(entries_row):
     """
-    Add entries to initial stock to get the final 
+    Add entries to initial stock to get the final
     stock existing in the bar.
-    -Initial stock represents the number of bottles 
+    -Initial stock represents the number of bottles
     per each drink that exist in the bar before entries.
-    -Entries represents the number of bottles that were 
-    added to the initial stock to create a bigger stock 
+    -Entries represents the number of bottles that were
+    added to the initial stock to create a bigger stock
     for the current day's sale.
     """
     print("Calculating total stock...")
     # Import initial stock data from worksheet
-    initial_stock = SHEET.worksheet("initial stock").get_all_values()
+    initial_stock = SHEET.worksheet("initial_stock").get_all_values()
+    initial_stock_row = initial_stock[-1]
+    print(initial_stock_row)
 
 
 def main():
     """
-    Function create to hold 
+    Function create to hold
     and run all program funtions
     """
     entries = get_entries_data()
     entries_data = [int(entry) for entry in entries]
     update_entries_data(entries_data)
     calculate_total_stock(entries_data)
+
 
 print("Welcome to Garden Bar stock calculation!\n")
 main()
