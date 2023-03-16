@@ -16,16 +16,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('garden-bar-stock')
 
 
-def get_initial_stock_data():
-    """
-    Import initial stock data from worksheet
-    """
-    initial_stock = SHEET.worksheet("initial stock").get_all_values()
-
-
-get_initial_stock_data()
-
-
 def get_entries_data():
     """
     Get entries input from the user.
@@ -78,7 +68,7 @@ def validate_entries(bottles):
     for bottle in bottles:
         if bottle.isdigit():
             if int(bottle) % 6 != 0:
-                print(f"{int(bottle)} is not divisible by 6.")
+                print(f"{int(bottle)} is not divisible by 6.\n")
                 return False
     return True
 
@@ -89,9 +79,26 @@ def update_entries_data(entries):
     prided from the user.
     """
     print("Entries worksheet updating...\n")
+    # Assign the user input to the specific columns 
+    # of entries worksheet
     entries_worksheet = SHEET.worksheet("entries")
     entries_worksheet.append_row(entries)
     print("Entries worksheet updated successfully.\n")
+
+
+def calculate_total_stock(entries_row):
+    """
+    Add entries to initial stock to get the final 
+    stock existing in the bar.
+    -Initial stock represents the number of bottles 
+    per each drink that exist in the bar before entries.
+    -Entries represents the number of bottles that were 
+    added to the initial stock to create a bigger stock 
+    for the current day's sale.
+    """
+    print("Calculating total stock...")
+    # Import initial stock data from worksheet
+    initial_stock = SHEET.worksheet("initial stock").get_all_values()
 
 
 def main():
@@ -102,6 +109,7 @@ def main():
     entries = get_entries_data()
     entries_data = [int(entry) for entry in entries]
     update_entries_data(entries_data)
+    calculate_total_stock(entries_data)
 
-
+print("Welcome to Garden Bar stock calculation!\n")
 main()
