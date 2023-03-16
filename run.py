@@ -101,7 +101,13 @@ def calculate_total_stock(entries_row):
     # Import initial stock data from worksheet
     initial_stock = SHEET.worksheet("initial_stock").get_all_values()
     initial_stock_row = initial_stock[-1]
-    print(initial_stock_row)
+
+    total_stock_bottles = []
+    for initial_stock, entries in zip(initial_stock_row, entries_row):
+        total_stock = int(initial_stock) + entries
+        total_stock_bottles.append(total_stock)
+
+    return total_stock_bottles
 
 
 def main():
@@ -112,7 +118,8 @@ def main():
     entries = get_entries_data()
     entries_data = [int(entry) for entry in entries]
     update_entries_data(entries_data)
-    calculate_total_stock(entries_data)
+    final_total_stock = calculate_total_stock(entries_data)
+    print(final_total_stock)
 
 
 print("Welcome to Garden Bar stock calculation!\n")
