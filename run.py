@@ -3,7 +3,6 @@ Import libraries
 """
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -72,34 +71,17 @@ def validate_entries(bottles):
                 print(f"{int(bottle)} is not divisible by 6.\n")
                 return False
     return True
+    
 
-
-def update_entries_data(entries):
+def update_worksheet_data(bottles_data, worksheet):
     """
-    Update the entries worksheet with data
-    prited from the user.
+    Collect a list of integers and push it into the worksheet.
+    Update the worksheet with the data provided.
     """
-    print("Entries worksheet updating...\n")
-    # Assign the user input to the specific columns
-    # of entries worksheet
-    entries_worksheet = SHEET.worksheet("entries")
-    entries_worksheet.append_row(entries)
-    print("Entries worksheet updated successfully.\n")
-
-
-def update_total_stock_data(total_stock):
-    """
-    Update the total_stock worksheet with the result
-    obtained from adding the initial stock with the
-    entries added by the user.
-    """
-    print("Total stock worksheet updating...\n")
-    # Pass the values obtained after the addition
-    # of intial_stock with entries to total_stock
-    # worksheet rows
-    total_stock_worksheet = SHEET.worksheet("total_stock")
-    total_stock_worksheet.append_row(total_stock)
-    print("Total stock worksheet updated successfully.\n")
+    print(f"Update {worksheet} worksheet...\n")
+    update_worksheet = SHEET.worksheet(worksheet)
+    update_worksheet.append_row(bottles_data)
+    print(f"{worksheet} worksheet updated successfully.\n")
 
 
 def calculate_total_stock(entries_row):
@@ -130,11 +112,11 @@ def main():
     Function create to hold
     and run all program funtions
     """
-    entries = get_entries_data()
-    entries_data = [int(entry) for entry in entries]
-    update_entries_data(entries_data)
-    final_total_stock = calculate_total_stock(entries_data)
-    update_total_stock_data(final_total_stock)
+    bottles_data = get_entries_data()
+    entries_data = [int(bottle_data) for bottle_data in bottles_data]
+    update_worksheet_data(entries_data, "entries")
+    total_stock_data = calculate_total_stock(entries_data)
+    update_worksheet_data(total_stock_data, "total_stock")
 
 
 print("Welcome to Garden Bar stock calculation!\n")
