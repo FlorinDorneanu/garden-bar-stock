@@ -23,7 +23,7 @@ def get_entries_data():
     valide input from the user, the loop
     should be repeted until the input is valid.
     The input should contain a string
-    of 5 numbers separated by a comma
+    of 5 numbers separated by a commas
     that can be divisible by 6
     """
     while True:
@@ -44,7 +44,7 @@ def get_entries_data():
     return entries_data
 
 
-def validate_entries(bottles):
+def validate_entries(entries):
     """
     Convert all string values into integers,
     Raises ValueError if strings cannot be
@@ -53,11 +53,11 @@ def validate_entries(bottles):
     cannot be divided by 6.
     """
     try:
-        [int(bottle) for bottle in bottles]
-        if len(bottles) != 5:
+        [int(entry) for entry in entries]
+        if len(entries) != 5:
             raise ValueError(
                 f"The user must enter exactly 5 values,"
-                f" you provided {len(bottles)}"
+                f" you provided {len(entries)}"
             )
     except ValueError as e:
         print(f"Invalid entries: {e}, please try again.\n")
@@ -65,13 +65,13 @@ def validate_entries(bottles):
     # - Checking if a string can be converted into an integer
     # - and use modulo operator to check if the integers can
     # - be devided by 6.
-    for bottle in bottles:
-        if bottle.isdigit():
-            if int(bottle) % 6 != 0:
-                print(f"{int(bottle)} is not divisible by 6.\n")
+    for entry in entries:
+        if entry.isdigit():
+            if int(entry) % 6 != 0:
+                print(f"{int(entry)} is not divisible by 6.\n")
                 return False
     return True
-    
+
 
 def update_worksheet_data(bottles_data, worksheet):
     """
@@ -107,16 +107,84 @@ def calculate_total_stock(entries_row):
     return total_stock_bottles
 
 
+def get_sales_data():
+    """
+    Get sales input from the user.
+    Running a while loop that should recive
+    valide input from the user, the loop
+    should be repeted until the input is valid.
+    The input should contain a string
+    of 5 numbers separated by a commas.
+    """
+    while True:
+        print("Please enter the current day sales data.")
+        print("Data should be 5 numbers, separated by commas.")
+        print("Example: 1,2,3,4,5\n")
+
+        sales_str = input("Enter the current day sales data here: ")
+
+        sales_data = sales_str.split(",")
+
+        if validate_sales(sales_data):
+            print("Sales data are vaid")
+            break
+
+    return sales_data
+
+
+def validate_sales(sales):
+    """
+    Convert all string values into integers,
+    Raises ValueError if strings cannot be
+    converted into integers, if there aren't
+    exactly 5 values.
+    """
+    try:
+        [int(sale) for sale in sales]
+        if len(sales) != 5:
+            raise ValueError(
+                f"The user must enter exactly 5 values,"
+                f" you provided {len(sales)}"
+            )
+    except ValueError as e:
+        print(f"Invalid entries: {e}, please try again.\n")
+        return False
+    return True
+
+
+def calculate_new_initial_stock(sales_row):
+    """
+    Substract sales from total stock to get the new
+    initial stock for the next selling day.
+    """
+    print("Calculating new initial stock...")
+    # Import total stock data from worksheet
+    total_stock = SHEET.worksheet("total_stock").get_all_values()
+    total_stock_row = total_stock[-1]
+
+    new_initial_stock_bottles = []
+    for total_stock, sales in zip(total_stock_row, sales_row):
+        initial_stock = int(total_stock) - sales
+        new_initial_stock_bottles.append(initial_stock)
+
+    return new_initial_stock_bottles
+
+
 def main():
     """
     Function create to hold
     and run all program funtions
     """
-    bottles_data = get_entries_data()
-    entries_data = [int(bottle_data) for bottle_data in bottles_data]
-    update_worksheet_data(entries_data, "entries")
-    total_stock_data = calculate_total_stock(entries_data)
+    entries_data = get_entries_data()
+    new_entries_data = [int(entry_data) for entry_data in entries_data]
+    update_worksheet_data(new_entries_data, "entries")
+    total_stock_data = calculate_total_stock(new_entries_data)
     update_worksheet_data(total_stock_data, "total_stock")
+    sales_data = get_sales_data()
+    new_sales_data = [int(sale_data) for sale_data in sales_data]
+    update_worksheet_data(new_sales_data, "sales")
+    new_intiaial_stock_data = calculate_new_initial_stock(new_sales_data)
+    update_worksheet_data(new_intiaial_stock_data, "initial_stock[+1]")
 
 
 print("Welcome to Garden Bar stock calculation!\n")
