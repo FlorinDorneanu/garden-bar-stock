@@ -184,8 +184,8 @@ def main():
     new_sales_data = [int(sale_data) for sale_data in sales_data]
     update_worksheet_data(new_sales_data, "sales")
     new_intiaial_stock_data = calculate_new_initial_stock(new_sales_data)
-    update_worksheet_data(new_intiaial_stock_data, "initial_stock[+1]")
-
+    update_worksheet_data(new_intiaial_stock_data, "initial_stock")
+    
 
 print("Welcome to Garden Bar stock calculation!\n")
 main()
