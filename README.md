@@ -55,4 +55,11 @@ As the employer I expect to:
 * The user is beeing informed that the initial stock has been updated with the final stock for the current day.
 * The user is beeing informed that the revenue is being calculated.
 * The user is beeing informed that the revenue worksheet has been succesfully updated.
+***
+
+### Sceleton
+* The aplication consists of a simple interface that requests only two inputs from the user to calcuate the daily stock and revenue for the bar.
+
+If the user enters an invaid input data, an error will apear informing the user about the mistake that was made and will continue requesting the user to input data until the data is valid.
+***
 
