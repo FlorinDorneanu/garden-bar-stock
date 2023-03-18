@@ -103,7 +103,7 @@ def calculate_total_stock(entries_row):
     initial_stock_row = initial_stock[-1]
 
     # Adding entries input to initial_stock iterating
-    # thru both at the same time to calculate total_stock.
+    # through both at the same time to calculate total_stock.
     total_stock_bottles = []
     for initial_stock, entries in zip(initial_stock_row, entries_row):
         total_stock = int(initial_stock) + entries
@@ -173,7 +173,7 @@ def calculate_final_stock(sales_row):
     total_stock_row = total_stock[-1]
 
     # Substract sales input from total_stock iterating
-    # thru both at the same time to calculate total_stock.
+    # through both at the same time to calculate total_stock.
     final_stock_bottles = []
     for total_stock, sales in zip(total_stock_row, sales_row):
         final_stock = int(total_stock) - sales
@@ -187,10 +187,13 @@ def calculate_revenue(sales_row):
     Import drinks_prices from worksheet.
     Calculate revenue multiplying sales with drinks_prices.
     """
+    # Import drinks_prices from worksheet
     print("Calculating revenue ...")
     drinks_prices = SHEET.worksheet("drinks_prices").get_all_values()
     drinks_prices_row = drinks_prices[-1]
 
+    # Multiply drinks_prices with sales iterating
+    # through both at the same time to calculate revenue.
     revenue_data = []
     for drinks_prices, sales in zip(drinks_prices_row, sales_row):
         revenue = int(drinks_prices) * sales
