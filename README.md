@@ -38,4 +38,21 @@ As the employer I expect to:
 * To be easily informed about the daily revenue.
 ***
 
+### Structure
+* The user is beeing welcomed to the Garden Bar Stock calculation.
+* The aplication request the user to enter the number of bottles per each drink that was introduced in the bar.
+* The user is beeing informed on how to enter a valid input.
+* The aplication request data from user until the data is valid.
+* The user is beeing informed that the data is valid.
+* The user is beeing informed that the entries worksheet has been succesfully updated.
+* The user is beeing informed that the total stock worksheet has been successfully updated.
+* The aplication request the user to enter the current day sales data.
+* The user is beeing informed about how to enter a valid input.
+* The aplication request data from user until the data is valid.
+* The user is beeing informed that the data is valid.
+* The user is beeing informed that the sales worksheet has been succesfully updated.
+* The user is beeing informed that the final stock worksheet has been successfully updated.
+* The user is beeing informed that the initial stock has been updated with the final stock for the current day.
+* The user is beeing informed that the revenue is being calculated.
+* The user is beeing informed that the revenue worksheet has been succesfully updated.
 

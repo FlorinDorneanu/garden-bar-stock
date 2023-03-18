@@ -39,7 +39,7 @@ def get_entries_data():
         entries_data = entries_str.split(",")
 
         if validate_entries(entries_data):
-            print("Entries are vaid")
+            print("Entries are valid")
             break
 
     return entries_data
@@ -132,7 +132,7 @@ def get_sales_data():
         sales_data = sales_str.split(",")
 
         if validate_sales(sales_data):
-            print("Sales data are vaid")
+            print("Sales data are valid")
             break
 
     return sales_data
