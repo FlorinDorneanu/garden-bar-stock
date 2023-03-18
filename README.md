@@ -100,7 +100,15 @@ If the user enters an invaid input data, an error will apear informing the user 
   * The revenue is going to be updated to worksheet.
   * The revenue is successfully updated to worksheet.
 
-  
+### Future Features
+* Allow the aplication to calculate the monthly and annual total stock and revenue.
+* Allow the aplication to calculate the inventory based on the the data provided.
+* Allow the aplication to calculate the average of the bottles saled daily.
+* Allow the aplication to store the loses products.
+***
+
+
+
   
 
   
