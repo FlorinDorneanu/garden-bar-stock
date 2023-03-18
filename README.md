@@ -28,12 +28,12 @@ As an employee I expect to:
 * Be informed if my data is not valid.
 * To re-enter data until is provided correctly without having to restart the application.
 * Retrieve data from google spreadsheet.
-* Be abble to calculate the total and final stock with ease.
+* Be able to calculate the total and final stock with ease.
 * Access the drinks prices from google spreadsheet in case of a possible price change.
 * Be able to calculate the daily revenue.
 
 As the employer I expect to:
-* Be able to access all the data that my employes enter.
+* Be able to access all the data that my employees enter.
 * Have all the data stored for monthly income calculation.
 * To be easily informed about the daily revenue.
 ***
@@ -107,7 +107,48 @@ If the user enters an invaid input data, an error will apear informing the user 
 * Allow the aplication to store the loses products.
 ***
 
+## Technologies Used
+### Languages
+[Python v2023.4.0](https://www.python.org/)
 
+### Frameworks, Libraries and Programs
+* [Google Spreadsheets](https://en.wikipedia.org/wiki/Google_Sheets): used as the external data store for the Orders and Menu data used by the project.
+* [Google Drive API](https://developers.google.com/drive/api/guides/about-sdk): used to generate credentials used in the project to securely access the Google Spreadsheet.
+* [Google Sheets API](https://developers.google.com/sheets/api/guides/concepts): used to support interactions (e.g. read/write functionality) between the code and data stored in the Google Spreadsheet.
+* [gspread](https://docs.gspread.org/en/latest/): Python API for Google Sheets
+* [Google Auth](https://google-auth.readthedocs.io/en/master/): Google authentication library for Python required to use the credentials generated for Google Drive API
+* [Git](https://git-scm.com/): was used for version control by utilising the Gitpod terminal to commit to Git and Push to GitHub.
+* [GitHub](https://github.com/): is used as the repository for the project's code after being pushed from Git.
+* [Heroku](https://dashboard.heroku.com/): is used to deploy the application and provide an enviroment in which the code can execute.
+***
+
+## Testing
+### Testing User Stories
+| Reference  | Description  |
+|---|---|
+| 01  | Easily access the application.  |
+| Validation  | The user can easily access the application from the link provided.  |
+| 02  | Enter the data without any difficulties.  |
+| Validation  | The user can enter data with ease due to the example provided. |
+| 03  | Be informed if my data is not valid  |
+| Validation  | The application shows to the user error messages when data is invalid.  |
+| 04  | To re-enter data until is provided correctly without having to restart the application.  |
+| Validation  | The user doesn't need to restart the application if the data provided is not valid.  |
+| 05  | Retrieve data from google spreadsheet.  |
+| Validation  | The user can retrieve data from google spreadsheet without any error.  |
+| 06  | Be able to calculate the total and final stock with ease.  |
+| Validation  | The user is able to calculate the total and final stock using the application without any error.  |
+| 07  | Access the drinks prices from google spreadsheet in case of a possible price change.  |
+| Validation  | The user can access the drinks prices from google spreadsheets at any time.  |
+| 08  | Be able to calculate the daily revenue.  |
+| Validation  | The user is able to calculate the revenue using the application without any error.  |
+| 09  | Be able to access all the data that my employees enter.  |
+| Validation  | The user is abble to access all the data proided in the Garden Bar Stock spreadsheet.  |
+| 10  | Have all the data stored for monthly income calculation.  |
+| Validation  | All the data is stored in the Garden Bar Stock spreadsheet.  |
+| 11  | To be easily informed about the daily revenue.  |
+| Validation  | The user can acces the daily revenue from the Garden Bar Stock spreadsheet.  |
+***
 
   
 
