@@ -166,6 +166,11 @@ If the user enters an invaid input data, an error will apear informing the user 
 | Revenue - update worksheet  | Access google spreadsheet and check the revenue worksheet.   | Revenue worksheet has been updated with the data resulted from multiplying sales with drinks prices.  | Pass  |
 ***
 
+### Validator Testing
+* [Python Validator](https://pep8ci.herokuapp.com)
+![Python Validator](documentation/images/validator.png)
+***
+
   
 
   

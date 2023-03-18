@@ -120,6 +120,7 @@ def get_sales_data():
     should be repeted until the input is valid.
     The input should contain a string
     of 5 numbers separated by a commas.
+    Function returns the sales_data.
     """
     # Create a while loop that repets itself until data provided is True.
     while True:
