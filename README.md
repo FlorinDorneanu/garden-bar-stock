@@ -21,6 +21,21 @@ The GitHub repository can be viewed here - [FlorinDorneanu/garden-bar-stock](htt
 * Multiplying sales with drinks prices the revenue for the day will be calculated.
 ***
 
+### User Stories
+As an employee I expect to:
+* Easily access the application.
+* Enter the data without any difficulties.
+* Be informed if my data is not valid.
+* To re-enter data until is provided correctly without having to restart the application.
+* Retrieve data from google spreadsheet.
+* Be abble to calculate the total and final stock with ease.
+* Access the drinks prices from google spreadsheet in case of a possible price change.
+* Be able to calculate the daily revenue.
 
+As the employer I expect to:
+* Be able to access all the data that my employes enter.
+* Have all the data stored for monthly income calculation.
+* To be easily informed about the daily revenue.
+***
 
 
