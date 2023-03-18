@@ -53,23 +53,22 @@ def validate_entries(entries):
     cannot be divided by 6.
     """
     try:
-        [int(entry) for entry in entries]
+        entries = [int(entry) for entry in entries]
         if len(entries) != 5:
             raise ValueError(
                 f"The user must enter exactly 5 values,"
                 f" you provided {len(entries)}"
             )
-    except ValueError as e:
-        print(f"Invalid entries: {e}, please try again.\n")
+    except ValueError as err:
+        print(f"Invalid entries: {err}, please try again.\n")
         return False
     # - Checking if a string can be converted into an integer
     # - and use modulo operator to check if the integers can
     # - be devided by 6.
     for entry in entries:
-        if entry.isdigit():
-            if int(entry) % 6 != 0:
-                print(f"{int(entry)} is not divisible by 6.\n")
-                return False
+        if int(entry) % 6 != 0:
+            print(f"{int(entry)} is not divisible by 6.\n")
+            return False
     return True
 
 
@@ -140,14 +139,14 @@ def validate_sales(sales):
     exactly 5 values.
     """
     try:
-        [int(sale) for sale in sales]
+        sales = [int(sale) for sale in sales]
         if len(sales) != 5:
             raise ValueError(
                 f"The user must enter exactly 5 values,"
                 f" you provided {len(sales)}"
             )
-    except ValueError as e:
-        print(f"Invalid entries: {e}, please try again.\n")
+    except ValueError as err:
+        print(f"Invalid entries: {err}, please try again.\n")
         return False
     return True
 
@@ -186,6 +185,7 @@ def main():
     final_stock_data = calculate_final_stock(new_sales_data)
     update_worksheet_data(final_stock_data, "final_stock")
     update_worksheet_data(final_stock_data, "initial_stock")
+
 
 print("Welcome to Garden Bar stock calculation!\n")
 main()
