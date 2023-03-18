@@ -63,3 +63,45 @@ As the employer I expect to:
 If the user enters an invaid input data, an error will apear informing the user about the mistake that was made and will continue requesting the user to input data until the data is valid.
 ***
 
+## Features
+### Existing Features
+* The user is being welcome to Garden Bar Stock calculation.
+* The application requests the user to enter the number of bottles for each drink introduced in the bar and informs the user on how to enter a valid data.
+![f1](documentation/images/f1.png)
+* The user has to enter five digits numbers that are dibisible by 6, separated by commas.
+* The application provide an exaple of valid data.
+* If the user's input data is invalid then an error message will appear.
+![f2](documentation/images/f2.jpg)
+* The aplication request the user to re-enter data until the data is valid.
+![f3](documentation/images/f3.jpg)
+* The user is beeing informed:
+  * That the entries are valid.
+  * The entries are going to be updated to worksheet.
+  * The entries worksheet is successfully updated to worksheet.
+  * The total stock is calculated.
+  * The total stock is going to be updated to worksheet.
+  * The total stock is successfully updated to worksheet.
+* The aplication request the user to introduce the current day sales data.
+* The input has to be 5 digit numbers separated by commas.
+* The application provide an exaple of valid data.
+![f4](documentation/images/f4.jpg)
+* If the user's input data is invalid then an error message will appear.
+* The aplication request the user to re-enter data until the data is valid.
+![f5](documentation/images/f5.jpg)
+* The user is beeing informed:
+  * That the sales are valid.
+  * The sales are going to be updated to worksheet.
+  * The sales worksheet is successfully updated to worksheet.
+  * The final stock is calculated.
+  * The final stock is going to be updated to worksheet.
+  * The final stock is successfully updated to worksheet.
+  * The initial stock is goinng to be updated to worksheet with the final stock data.
+  * The revenue is going to be calculated.
+  * The revenue is going to be updated to worksheet.
+  * The revenue is successfully updated to worksheet.
+
+  
+  
+
+  
+  

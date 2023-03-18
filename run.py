@@ -55,7 +55,7 @@ def validate_entries(entries):
     Function return True if the user insert correct values.
     """
     # Convert list of string into integers and raise VallueError
-    # if entries are more ore less then 5 numbers.
+    # if entries are not integers or more or less then 5 numbers.
     try:
         entries = [int(entry) for entry in entries]
         if len(entries) != 5:
