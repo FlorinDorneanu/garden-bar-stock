@@ -26,6 +26,7 @@ def get_entries_data():
     of 5 numbers separated by a commas
     that can be divisible by 6
     """
+    # Create a while loop that repets itself until data provided is True.
     while True:
         print("Please enter the number of bottles "
               "for each drink introduced in the bar.")
@@ -51,7 +52,10 @@ def validate_entries(entries):
     converted into integers, if there aren't
     exactly 5 values, or if the values entered
     cannot be divided by 6.
+    Function return True if the user insert correct values.
     """
+    # Convert list of string into integers and raise VallueError
+    # if entries are more ore less then 5 numbers.
     try:
         entries = [int(entry) for entry in entries]
         if len(entries) != 5:
@@ -62,9 +66,8 @@ def validate_entries(entries):
     except ValueError as err:
         print(f"Invalid entries: {err}, please try again.\n")
         return False
-    # - Checking if a string can be converted into an integer
-    # - and use modulo operator to check if the integers can
-    # - be devided by 6.
+    # Use modulo operator to check if the integers can
+    # be devided by 6.
     for entry in entries:
         if int(entry) % 6 != 0:
             print(f"{int(entry)} is not divisible by 6.\n")
@@ -89,15 +92,18 @@ def calculate_total_stock(entries_row):
     stock existing in the bar.
     -Initial stock represents the number of bottles
     per each drink that exist in the bar before entries.
-    -Entries represents the number of bottles that were
+    -Entries represents the user input that is
     added to the initial stock to create a bigger stock
     for the current day's sale.
+    Function returns the calculate total_stock.
     """
     print("Calculating total stock...")
-    # Import initial stock data from worksheet
+    # Import last row of initial stock data from worksheet
     initial_stock = SHEET.worksheet("initial_stock").get_all_values()
     initial_stock_row = initial_stock[-1]
 
+    # Adding entries input to initial_stock iterating
+    # thru both at the same time to calculate total_stock.
     total_stock_bottles = []
     for initial_stock, entries in zip(initial_stock_row, entries_row):
         total_stock = int(initial_stock) + entries
@@ -115,6 +121,7 @@ def get_sales_data():
     The input should contain a string
     of 5 numbers separated by a commas.
     """
+    # Create a while loop that repets itself until data provided is True.
     while True:
         print("Please enter the current day sales data.")
         print("Data should be 5 numbers, separated by commas.")
@@ -137,7 +144,11 @@ def validate_sales(sales):
     Raises ValueError if strings cannot be
     converted into integers, if there aren't
     exactly 5 values.
+    Function return True if the conditions met
+    and False if VallueError rise.
     """
+    # Convert a list of strings into integers and rise
+    # VallueError if user input contain more than 5 numbers.
     try:
         sales = [int(sale) for sale in sales]
         if len(sales) != 5:
@@ -156,11 +167,13 @@ def calculate_final_stock(sales_row):
     Substract sales from total stock to get the new
     initial stock for the next selling day.
     """
-    print("Calculating new initial stock...")
-    # Import total stock data from worksheet
+    print("Calculating final_stock ...")
+    # Import the last row of total_stock data from worksheet.
     total_stock = SHEET.worksheet("total_stock").get_all_values()
     total_stock_row = total_stock[-1]
 
+    # Substract sales input from total_stock iterating
+    # thru both at the same time to calculate total_stock.
     final_stock_bottles = []
     for total_stock, sales in zip(total_stock_row, sales_row):
         final_stock = int(total_stock) - sales
@@ -169,11 +182,29 @@ def calculate_final_stock(sales_row):
     return final_stock_bottles
 
 
+def calculate_revenue(sales_row):
+    """
+    Import drinks_prices from worksheet.
+    Calculate revenue multiplying sales with drinks_prices.
+    """
+    print("Calculating revenue ...")
+    drinks_prices = SHEET.worksheet("drinks_prices").get_all_values()
+    drinks_prices_row = drinks_prices[-1]
+
+    revenue_data = []
+    for drinks_prices, sales in zip(drinks_prices_row, sales_row):
+        revenue = int(drinks_prices) * sales
+        revenue_data.append(revenue)
+
+    return revenue_data
+
+
 def main():
     """
     Function created to hold
     and run all program funtions
     """
+    # All program functions are called here.
     entries_data = get_entries_data()
     new_entries_data = [int(entry_data) for entry_data in entries_data]
     update_worksheet_data(new_entries_data, "entries")
@@ -185,6 +216,8 @@ def main():
     final_stock_data = calculate_final_stock(new_sales_data)
     update_worksheet_data(final_stock_data, "final_stock")
     update_worksheet_data(final_stock_data, "initial_stock")
+    revenue_data = calculate_revenue(new_sales_data)
+    update_worksheet_data(revenue_data, "revenue")
 
 
 print("Welcome to Garden Bar stock calculation!\n")
