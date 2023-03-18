@@ -150,6 +150,22 @@ If the user enters an invaid input data, an error will apear informing the user 
 | Validation  | The user can acces the daily revenue from the Garden Bar Stock spreadsheet.  |
 ***
 
+### Test Cases and Results
+| Test Category  | Steps  | Expected Outcome  | Result  |
+|---|---|---|---|
+| Run Program  | Run the application  | Welcome message appears. System asks the user to enter the number of bottles entered in the bar. Example is provided.  | Pass  |
+| Entries - data checks  | Enter invalid inputs, e.g. bear, empty string, 11.   | Error message apears and ask the user to re-enter a valid input.  | Pass  |
+| Entries  | Enter a valid input containing 5 numbers divisible by 6 and separated by commas.  | Confirmation message for valid data appears. Entries worksheet successfull updated, calculating total stock and updated successfully to worksheet. System asks the user to enter the current day sales data. Example of valid data is provided.  | Pass  |
+| Entries - update worksheet  | Access google spreadsheet and check the entries worksheet.  | Entries data has been updated to the entries worksheet.  | Pass  |
+| Total stock - update worksheet  | Access google spreadsheet and check the total stock worksheet.  | Total stock worksheet has been updated with the data resulted adding entries to initial stock.  | Pass  |
+| Sales - data checks  | Enter invalid inputs, e.g. bear, empty string.  | Error message apears and ask the user to re-enter a valid input.  | Pass  |
+| Sales  | Enter a valid input containing 5 numbers separated by commas.  | Confirmation message for valid data appears. Sales worksheet successfull updated, calculating final stock and updated successfully to worksheet. Update initial stock with final stock values. Calculate revenue and update to google worksheet. Confirmation message for successfully updated worksheets appears.   | Pass  |
+| Sales - update worksheet  | Access google spreadsheet and check the sales worksheet.  | Sales data has been updated to the sales worksheet.  | Pass  |
+| Final stock - update worksheet  | Access google spreadsheet and check the final stock worksheet.  | Final stock worksheet has been updated with the result of substracting sales from total stock.  | Pass  |
+| Initial stock - update worksheet  | Access google spreadsheet and check the initial stock worksheet.  | Initial stock has been updated with the final stock data provided in the worksheet.  | Pass  |
+| Revenue - update worksheet  | Access google spreadsheet and check the revenue worksheet.   | Revenue worksheet has been updated with the data resulted from multiplying sales with drinks prices.  | Pass  |
+***
+
   
 
   
