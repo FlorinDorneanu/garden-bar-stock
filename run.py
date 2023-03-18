@@ -152,7 +152,7 @@ def validate_sales(sales):
     return True
 
 
-def calculate_new_initial_stock(sales_row):
+def calculate_final_stock(sales_row):
     """
     Substract sales from total stock to get the new
     initial stock for the next selling day.
@@ -162,17 +162,17 @@ def calculate_new_initial_stock(sales_row):
     total_stock = SHEET.worksheet("total_stock").get_all_values()
     total_stock_row = total_stock[-1]
 
-    new_initial_stock_bottles = []
+    final_stock_bottles = []
     for total_stock, sales in zip(total_stock_row, sales_row):
-        initial_stock = int(total_stock) - sales
-        new_initial_stock_bottles.append(initial_stock)
+        final_stock = int(total_stock) - sales
+        final_stock_bottles.append(final_stock)
 
-    return new_initial_stock_bottles
+    return final_stock_bottles
 
 
 def main():
     """
-    Function create to hold
+    Function created to hold
     and run all program funtions
     """
     entries_data = get_entries_data()
@@ -183,9 +183,9 @@ def main():
     sales_data = get_sales_data()
     new_sales_data = [int(sale_data) for sale_data in sales_data]
     update_worksheet_data(new_sales_data, "sales")
-    new_intiaial_stock_data = calculate_new_initial_stock(new_sales_data)
-    update_worksheet_data(new_intiaial_stock_data, "initial_stock")
-    
+    final_stock_data = calculate_final_stock(new_sales_data)
+    update_worksheet_data(final_stock_data, "final_stock")
+    update_worksheet_data(final_stock_data, "initial_stock")
 
 print("Welcome to Garden Bar stock calculation!\n")
 main()
