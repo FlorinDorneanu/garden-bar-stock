@@ -171,6 +171,85 @@ If the user enters an invaid input data, an error will apear informing the user 
 ![Python Validator](documentation/images/validator.png)
 ***
 
+## Bugs
+* The first bug showed up when trying to check if the user input for entries data can be divided by 6. When iterating through ```entries``` values, the modulo operation didn’t work. I fixed it by changing the ```bottles``` parameter within the validate_entries function to ```entries``` and by converting ```entry``` strings to integers.
+  * Initial code:
+  ```
+  def validate_entries(bottles):
+    """
+    Convert all string values into integers,
+    Raises ValueError if strings cannot be
+    converted into integers, if there aren't
+    exactly 5 values, or if the values entered
+    cannot be divided by 6.
+    """
+    try:
+        [int(bottle) for bottle in bottles]
+        if len(bottles) != 5:
+            raise ValueError(
+                f"The user must enter exactly 5 values,"
+                f" you provided {len(bottles)}"
+            )
+    except ValueError as e: 
+        print(f"Invalid entries: {e}, please try again.\n")
+
+    for bottle in bottles:
+        if bottle % 6 != 0:
+            print(f"{bottle} is not divisible by 6")
+  ```
+    * Final code:
+    ``` 
+    def validate_entries(entries):
+    """
+    Convert all string values into integers,
+    Raises ValueError if strings cannot be
+    converted into integers, if there aren't
+    exactly 5 values, or if the values entered
+    cannot be divided by 6.
+    Function return True if the user insert correct values.
+    """
+    # Convert list of string into integers and raise VallueError
+    # if entries are not integers or more or less then 5 numbers.
+    try:
+        entries = [int(entry) for entry in entries]
+        if len(entries) != 5:
+            raise ValueError(
+                f"The user must enter exactly 5 values,"
+                f" you provided {len(entries)}"
+            )
+    except ValueError as err:
+        print(f"Invalid entries: {err}, please try again.\n")
+        return False
+    # Use modulo operator to check if the integers can
+    # be devided by 6.
+    for entry in entries:
+        if int(entry) % 6 != 0:
+            print(f"{int(entry)} is not divisible by 6.\n")
+            return False
+    return True
+    ```
+* Another bug showed up when trying to update ```final_stock``` values to the initial_stock rows worksheet. An Error rised when I tried to create a function and import ```final_stock``` data, then assigned it to initial_stock variable. I solved it by updating the initial_stock worksheet data with the ```final_stock``` data variable within ```main``` function.
+    * The initial code was:
+    ```
+    def new_initial_stock(final_stock):
+    """
+    Import final stock data to initial stock worksheet rows.
+    """
+    initial_stock = SHEET.worksheet("total_stock").get_all_values()
+    initial_stock_row = total_stock[-1]
+    ```
+    * Final code:
+    ```
+    update_worksheet_data(final_stock_data, "initial_stock")
+    ```
+* Within except statement, when trying to raise ValueError as e, this probolem showed up “Variable name ‘e’ doesn’t conform to snake_naming style”. I solved it changing the “e” to “err”.
+* Trying to convert strings into integers  within try statement a problem was raised that says “[int(entry) for entry in entries] is assigned to nothing”. I solve this problem assigning the expression to entries variable.
+
+## Known Bugs
+* There are no known bugs within the aplication.
+***
+
+
   
 
   
